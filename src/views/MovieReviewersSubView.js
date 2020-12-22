@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import * as movieShelfAPI from '../services/movieshelf-api';
 
 export default function MovieReviewersSubView() {
-  const [reviewers, setReviewers] = useState(null);
+  const [reviewers, setReviewers] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function MovieReviewersSubView() {
           ))}
         </ul>
       ) : (
-        <p>We don't have any reviewers</p>
+        <p>Sorry, there are no reviewers for this film 😦</p>
       )}
     </>
   );

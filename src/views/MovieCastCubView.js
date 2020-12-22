@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import * as movieShelfAPI from '../services/movieshelf-api';
 
 export default function MovieCastSubView() {
-  const [cast, setCast] = useState(null);
+  const [cast, setCast] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function MovieCastSubView() {
     });
   }, [movieId]);
 
-  //   console.log(cast);
+  // console.log(cast);
   return (
     <>
       {cast && (

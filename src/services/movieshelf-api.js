@@ -31,3 +31,9 @@ export function fetchReviewers(movie_id) {
     `${BASE_URL}movie/${movie_id}/reviews?api_key=${API_KEY}&language=en-US`,
   );
 }
+
+export function fetchMoviesByQuery(query) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`,
+  );
+}
