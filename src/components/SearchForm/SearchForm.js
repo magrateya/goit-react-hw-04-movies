@@ -44,6 +44,7 @@ export default function SearchForm({ onSubmit, filmArr }) {
             <li key={film.id}>
               <Link to={`${url}/${film.id}`}>
                 <img
+                  className={s.ImageGalleryItemImage}
                   src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
                   alt={film.title}
                 />
