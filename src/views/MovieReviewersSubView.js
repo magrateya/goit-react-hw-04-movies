@@ -12,8 +12,6 @@ export default function MovieReviewersSubView() {
     });
   }, [movieId]);
 
-  //   console.log(reviewers);
-
   return (
     <>
       {reviewers.length > 0 ? (

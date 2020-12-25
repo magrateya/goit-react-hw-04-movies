@@ -10,8 +10,6 @@ import {
 import * as movieShelfAPI from '../services/movieshelf-api';
 
 import PageHeading from '../components/PageHeading/PageHeading';
-// import MovieCastSubView from '../views/MovieCastCubView';
-// import MovieReviewersSubView from '../views/MovieReviewersSubView';
 import GoBackBtn from '../components/GoBackBtn/GoBackBtn';
 import Loader from '../components/Loader/Loader';
 
@@ -70,7 +68,6 @@ export default function MovieDetailView() {
               pathname: `${url}/cast`,
               state: { from: location.state ? location.state.from : '/' },
             }}
-            // to={`${url}/cast`}
           >
             Cast
           </NavLink>
@@ -81,7 +78,6 @@ export default function MovieDetailView() {
               pathname: `${url}/reviews`,
               state: { from: location.state ? location.state.from : '/' },
             }}
-            // to={`${url}/reviews`}
           >
             Reviews
           </NavLink>
