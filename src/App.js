@@ -8,10 +8,18 @@ import MovieDetailView from './views/MovieDetailsView';
 import MoviesView from './views/MoviesView';
 import NotFoundView from './views/NotFoundView';
 
-// const HomeView = lazy(() => import('./views/HomeView.js'));
-// const MovieDetailView = lazy(() => import('./views/MovieDetailView.js'));
-// const MoviesView = lazy(() => import('./views/MoviesView.js'));
-// const NotFoundView = lazy(() => import('./views/NotFoundView.js'));
+// const HomeView = lazy(() =>
+//   import('./views/HomeView' /* webpackChunkName: "home-page" */),
+// );
+// const MovieDetailView = lazy(() =>
+//   import('./views/MovieDetailView.js' /* webpackChunkName: "details-page" */),
+// );
+// const MoviesView = lazy(() =>
+//   import('./views/MoviesView.js' /* webpackChunkName: "movies-page" */),
+// );
+// const NotFoundView = lazy(() =>
+//   import('./views/NotFoundView.js' /* webpackChunkName: "404-page" */),
+// );
 
 export default function App() {
   return (

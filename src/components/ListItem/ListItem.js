@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './ListItem.module.css';
 import noImg from '../../img/noImg.jpg';
 
@@ -18,3 +19,10 @@ export default function ListItemCast({ id, profile_path, character, name }) {
     </li>
   );
 }
+
+ListItemCast.propTypes = {
+  id: PropTypes.number,
+  profile_path: PropTypes.string,
+  character: PropTypes.string,
+  name: PropTypes.string,
+};

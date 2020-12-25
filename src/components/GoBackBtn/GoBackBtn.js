@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ImCircleLeft } from 'react-icons/im';
 import s from './GoBackBtn.module.css';
 
@@ -9,3 +10,7 @@ export default function GoBackBtn({ onBackClick }) {
     </button>
   );
 }
+
+GoBackBtn.propTypes = {
+  onBackClick: PropTypes.func,
+};

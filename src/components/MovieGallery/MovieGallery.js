@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import s from './MovieGallery.module.css';
 import noImg from '../../img/noImg.jpg';
@@ -42,3 +43,8 @@ export default function MovieGallery({ filmArr, loadStatus }) {
     </>
   );
 }
+
+MovieGallery.propTypes = {
+  filmArr: PropTypes.array,
+  loadStatus: PropTypes.bool,
+};
