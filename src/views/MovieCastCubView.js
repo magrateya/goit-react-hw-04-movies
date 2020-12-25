@@ -13,10 +13,9 @@ export default function MovieCastSubView() {
     });
   }, [movieId]);
 
-  // console.log(cast);
   return (
     <>
-      {cast && (
+      {cast.length > 0 ? (
         <ul style={{ display: 'flex', flexWrap: 'wrap', margin: '-10px' }}>
           {cast.map(item => (
             <ListItemCast
@@ -27,6 +26,13 @@ export default function MovieCastSubView() {
             />
           ))}
         </ul>
+      ) : (
+        <p>
+          Sorry, there are no cast for this film
+          <span role="img" aria-label="face emoji">
+            😦
+          </span>
+        </p>
       )}
     </>
   );

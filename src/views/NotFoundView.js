@@ -1,10 +1,12 @@
+import PageHeading from '../components/PageHeading/PageHeading';
+import notFoundPage from '../img/notFoundPage.jpg';
+
 export default function NotFoundView() {
   return (
-    <h1>
-      404 Страница не найдена{' '}
-      <span role="img" aria-label="face emoji">
-        😕
-      </span>
-    </h1>
+    <>
+      <PageHeading text="Something went wrong"></PageHeading>
+
+      <img src={notFoundPage} alt="notFound" style={{ width: '100%' }} />
+    </>
   );
 }

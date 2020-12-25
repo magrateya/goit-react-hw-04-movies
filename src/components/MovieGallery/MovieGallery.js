@@ -1,16 +1,14 @@
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import s from './MovieGallery.module.css';
+import noImg from '../../img/noImg.jpg';
 
-export default function MovieGallery({ filmArr }) {
+export default function MovieGallery({ filmArr, loadStatus }) {
   const { url } = useRouteMatch();
   const location = useLocation();
 
-  console.log(location.state);
-  console.log(location);
-
   return (
     <>
-      {filmArr ? (
+      {filmArr?.length > 0 ? (
         <ul className={s.ImageGallery}>
           {filmArr.map(film => (
             <li key={film.id}>
@@ -26,7 +24,11 @@ export default function MovieGallery({ filmArr }) {
               >
                 <img
                   className={s.ImageGalleryItemImage}
-                  src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
+                  src={
+                    film.poster_path
+                      ? `https://image.tmdb.org/t/p/w200/${film.poster_path}`
+                      : noImg
+                  }
                   alt={film.title}
                 />
               </Link>
@@ -35,7 +37,7 @@ export default function MovieGallery({ filmArr }) {
           ))}
         </ul>
       ) : (
-        <p className={s.infoText}>Please enter your query.</p>
+        !loadStatus && <p className={s.infoText}>Please enter your query.</p>
       )}
     </>
   );

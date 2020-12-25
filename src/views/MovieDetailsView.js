@@ -25,23 +25,18 @@ export default function MovieDetailView() {
     movieShelfAPI.fetchMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  //   console.log(movie);
-  // console.log(location.state);
-
-  const GoBackClick = () => {
-    if (!location.state) {
-      history.push('/');
-      return;
+  const HandleGoBackClick = () => {
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
     }
-    history.push({ ...location.state.from });
-    // history.push(location.state.from.pathname + location.state.from.search);
+    history.push('/');
+
+    // history.push(location?.state?.from || '/');
   };
 
-  console.log(location.state);
-  console.log(location);
   return (
     <>
-      <GoBackBtn onBackClick={GoBackClick} />
+      <GoBackBtn onBackClick={HandleGoBackClick} />
 
       {movie && (
         <div style={{ display: 'flex' }}>

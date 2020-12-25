@@ -28,7 +28,12 @@ export default function MovieReviewersSubView() {
           ))}
         </ul>
       ) : (
-        <p>Sorry, there are no reviewers for this film 😦</p>
+        <p>
+          Sorry, there are no reviewers for this film{' '}
+          <span role="img" aria-label="face emoji">
+            😦
+          </span>
+        </p>
       )}
     </>
   );

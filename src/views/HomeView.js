@@ -8,7 +8,6 @@ import MovieGallery from '../components/MovieGallery/MovieGallery';
 export default function HomeView() {
   const [movies, setMovies] = useState(null);
   // const { url } = useRouteMatch();
-
   // const location = useLocation();
 
   useEffect(() => {
@@ -16,8 +15,6 @@ export default function HomeView() {
       setMovies([...data.results]);
     });
   }, []);
-
-  // console.log(movies);
 
   return (
     <>
