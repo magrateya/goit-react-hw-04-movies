@@ -40,6 +40,8 @@ export default function MovieDetailView() {
     // history.push(location?.state?.from || '/');
   };
 
+  // console.log(movie.genres);
+
   return (
     <>
       <GoBackBtn onBackClick={HandleGoBackClick} />
@@ -55,6 +57,15 @@ export default function MovieDetailView() {
             <p>{movie.vote_average}</p>
             <p>{movie.release_date}</p>
             <p>{movie.runtime} minutes</p>
+            <p>
+              <span style={{ marginRight: '10px' }}>Genres:</span>
+              {movie.genres &&
+                movie.genres.map(genre => (
+                  <span key={genre.id} style={{ marginRight: '5px' }}>
+                    {genre.name}
+                  </span>
+                ))}
+            </p>
             <p>{movie.overview}</p>
           </div>
         </div>
