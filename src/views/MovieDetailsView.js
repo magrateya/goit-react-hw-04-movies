@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   NavLink,
@@ -10,9 +10,17 @@ import {
 import * as movieShelfAPI from '../services/movieshelf-api';
 
 import PageHeading from '../components/PageHeading/PageHeading';
-import MovieCastSubView from '../views/MovieCastCubView';
-import MovieReviewersSubView from '../views/MovieReviewersSubView';
+// import MovieCastSubView from '../views/MovieCastCubView';
+// import MovieReviewersSubView from '../views/MovieReviewersSubView';
 import GoBackBtn from '../components/GoBackBtn/GoBackBtn';
+import Loader from '../components/Loader/Loader';
+
+const MovieCastSubView = lazy(() =>
+  import('../views/MovieCastCubView' /* webpackChunkName: "cast" */),
+);
+const MovieReviewersSubView = lazy(() =>
+  import('../views/MovieReviewersSubView' /* webpackChunkName: "rewiew" */),
+);
 
 export default function MovieDetailView() {
   const history = useHistory();
@@ -80,8 +88,15 @@ export default function MovieDetailView() {
         </li>
       </ul>
       <hr />
-      <Route path={`${path}/cast`} component={MovieCastSubView}></Route>
-      <Route path={`${path}/reviews`} component={MovieReviewersSubView}></Route>
+
+      <Suspense fallback={<Loader />}>
+        <Route path={`${path}/cast`}>
+          <MovieCastSubView />
+        </Route>
+        <Route path={`${path}/reviews`}>
+          <MovieReviewersSubView />
+        </Route>
+      </Suspense>
     </>
   );
 }
