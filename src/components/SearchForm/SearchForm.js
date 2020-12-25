@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+
 import s from './SearchForm.module.css';
 
-export default function SearchForm({ onSubmit, filmArr }) {
-  const { url } = useRouteMatch();
+export default function SearchForm({ onSubmit }) {
   const [query, setQuery] = useState('');
 
   const handleChange = e => {
@@ -20,7 +19,7 @@ export default function SearchForm({ onSubmit, filmArr }) {
 
     setQuery('');
   };
-  console.log(filmArr);
+
   return (
     <>
       <form className={s.SearchForm} onSubmit={handleSubmit}>
@@ -38,24 +37,6 @@ export default function SearchForm({ onSubmit, filmArr }) {
           placeholder="Search movie"
         />
       </form>
-      {filmArr.length > 0 ? (
-        <ul className={s.ImageGallery}>
-          {filmArr.map(film => (
-            <li key={film.id}>
-              <Link to={`${url}/${film.id}`}>
-                <img
-                  className={s.ImageGalleryItemImage}
-                  src={`https://image.tmdb.org/t/p/w200/${film.poster_path}`}
-                  alt={film.title}
-                />
-              </Link>
-              <p>{film.original_title}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Please enter your query.</p>
-      )}
     </>
   );
 }

@@ -58,7 +58,7 @@
   font: inherit;
   font-size: 18px;
 }
-.ImageGallery {
+/* .ImageGallery {
   display: grid;
   max-width: calc(100vw - 48px);
   grid-template-columns: 25% 25% 25% 25%;
@@ -87,3 +87,8 @@
   transform: scale(1.03);
   cursor: zoom-in;
 }
+
+.infoText {
+  text-align: center;
+  color: gray;
+} */
