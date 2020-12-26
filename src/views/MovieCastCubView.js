@@ -28,7 +28,7 @@ export default function MovieCastSubView() {
         </ul>
       ) : (
         <p>
-          Sorry, there are no cast for this film
+          Sorry, there is no information about cast of this film.
           <span role="img" aria-label="face emoji">
             😦
           </span>

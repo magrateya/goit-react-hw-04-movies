@@ -26,9 +26,15 @@ export default function MovieDetailView() {
   const { url, path } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    movieShelfAPI.fetchMovieDetails(movieId).then(setMovie);
+    movieShelfAPI
+      .fetchMovieDetails(movieId)
+      .then(setMovie)
+      .catch(error => {
+        setError(error.message);
+      });
   }, [movieId]);
 
   const HandleGoBackClick = () => {
@@ -40,61 +46,63 @@ export default function MovieDetailView() {
     // history.push(location?.state?.from || '/');
   };
 
-  // console.log(movie.genres);
-
   return (
     <>
       <GoBackBtn onBackClick={HandleGoBackClick} />
 
-      {movie && (
-        <div style={{ display: 'flex' }}>
-          <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-            alt={movie.title}
-          ></img>
-          <div style={{ marginLeft: '50px' }}>
-            <h2>{movie.original_title}</h2>
-            <p>{movie.vote_average}</p>
-            <p>{movie.release_date}</p>
-            <p>{movie.runtime} minutes</p>
-            <p>
-              <span style={{ marginRight: '10px' }}>Genres:</span>
-              {movie.genres &&
-                movie.genres.map(genre => (
-                  <span key={genre.id} style={{ marginRight: '5px' }}>
-                    {genre.name}
-                  </span>
-                ))}
-            </p>
-            <p>{movie.overview}</p>
+      {movie ? (
+        <>
+          <div style={{ display: 'flex' }}>
+            <img
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt={movie.title}
+            ></img>
+            <div style={{ marginLeft: '50px' }}>
+              <h2>{movie.original_title}</h2>
+              <p>{movie.vote_average}</p>
+              <p>{movie.release_date}</p>
+              <p>{movie.runtime} minutes</p>
+              <p>
+                <span style={{ marginRight: '10px' }}>Genres:</span>
+                {movie.genres &&
+                  movie.genres.map(genre => (
+                    <span key={genre.id} style={{ marginRight: '5px' }}>
+                      {genre.name}
+                    </span>
+                  ))}
+              </p>
+              <p>{movie.overview}</p>
+            </div>
           </div>
-        </div>
+          <hr />
+          <PageHeading text="Aditional information"></PageHeading>
+          <ul>
+            <li>
+              <NavLink
+                to={{
+                  pathname: `${url}/cast`,
+                  state: { from: location.state ? location.state.from : '/' },
+                }}
+              >
+                Cast
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={{
+                  pathname: `${url}/reviews`,
+                  state: { from: location.state ? location.state.from : '/' },
+                }}
+              >
+                Reviews
+              </NavLink>
+            </li>
+          </ul>
+          <hr />
+        </>
+      ) : (
+        <h1>{error}</h1>
       )}
-      <hr />
-      <PageHeading text="Aditional information"></PageHeading>
-      <ul>
-        <li>
-          <NavLink
-            to={{
-              pathname: `${url}/cast`,
-              state: { from: location.state ? location.state.from : '/' },
-            }}
-          >
-            Cast
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={{
-              pathname: `${url}/reviews`,
-              state: { from: location.state ? location.state.from : '/' },
-            }}
-          >
-            Reviews
-          </NavLink>
-        </li>
-      </ul>
-      <hr />
 
       <Suspense fallback={<Loader />}>
         <Route path={`${path}/cast`}>
