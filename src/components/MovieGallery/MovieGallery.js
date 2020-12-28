@@ -3,7 +3,7 @@ import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import s from './MovieGallery.module.css';
 import noImg from '../../img/noImg.jpg';
 
-export default function MovieGallery({ filmArr, loadStatus }) {
+export default function MovieGallery({ filmArr, loadStatus, path }) {
   const { url } = useRouteMatch();
   const location = useLocation();
 
@@ -15,11 +15,7 @@ export default function MovieGallery({ filmArr, loadStatus }) {
             <li key={film.id}>
               <Link
                 to={{
-                  pathname:
-                    location.pathname === '/movies'
-                      ? `${url}/${film.id}`
-                      : `${url}movies/${film.id}`,
-                  // pathname: `${url}movies/${film.id}`,
+                  pathname: path ? `${path}/${film.id}` : `${url}/${film.id}`,
                   state: { from: location },
                 }}
               >
